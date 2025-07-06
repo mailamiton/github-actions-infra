@@ -35,7 +35,7 @@ env:
   PROJECT_ID: 'data-explorer-463810' # TODO: update to your Google Cloud project ID
   GAR_LOCATION: 'us-central1' # TODO: update to your region
   REPOSITORY: 'dbt_repository' # TODO: update to your Artifact Registry docker repository name
-  IMAGE: 'static-site'
+  IMAGE: 'dbt'
   WORKLOAD_IDENTITY_PROVIDER  : 'projects/82998512970/locations/global/workloadIdentityPools/git-hub-artifact-registry/providers/github'
   SERVICE_ACCOUNT: 'artifact-registry@data-explorer-463810.iam.gserviceaccount.com'
 
@@ -79,9 +79,11 @@ jobs:
           DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
 
           docker build \
+            -f container/Dockerfile \
             --tag "${DOCKER_TAG}" \
             --build-arg GITHUB_SHA="${GITHUB_SHA}" \
             --build-arg GITHUB_REF="${GITHUB_REF}" \
-            .
+            container/
+
 
           docker push "${DOCKER_TAG}"
