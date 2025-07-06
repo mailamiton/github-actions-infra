@@ -76,7 +76,7 @@ jobs:
       # Build the Docker image
       - name: 'Build and push Docker container'
         run: |-
-          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}:${GITHUB_SHA}"
 
           docker build \
             -f container/Dockerfile \
