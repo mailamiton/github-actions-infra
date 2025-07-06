@@ -1,0 +1,24 @@
+# Environment
+.env
+
+# Credentials
+*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# dbt
+dbt/logs/
+dbt/target/
+dbt_packages/
+dbt_modules/
