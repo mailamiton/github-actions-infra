@@ -123,3 +123,31 @@ Once the image is built, you can run any dbt command by passing it to `docker ru
  gcloud auth application-default login
  gcloud auth login
  ```
+
+
+ 1. Cretae a WF and setup git hub action 
+ 2. Create a service account with permission artifacts writer
+      Repository is a diffrent direct which is not in project havon wf
+      gcloud iam service-accounts add-iam-policy-binding artifact-registry@data-explorer-463810.iam.gserviceaccount.com \
+        --project=data-explorer-463810 \
+        --member="principalSet://iam.googleapis.com/projects/82998512970/locations/global/workloadIdentityPools/git-hub-artifact-registry/attribute.repository/mailamiton/github-actions-infra" \
+        --role="roles/iam.workloadIdentityUser"
+ 3. create a repository 
+ 4. Get the resource id using below command  which is required in github action
+      gcloud iam workload-identity-pools providers list \
+    --project=infra-deployment-464004 \
+    --location=global \
+    --workload-identity-pool=git-hub-artifact-registry
+
+
+data-explorer-463810
+
+
+
+
+gcloud iam workload-identity-pools providers list \
+  --project=infra-deployment-464004 \
+  --location=global \
+  --workload-identity-pool=git-hub-artifact-registry
+
+projects/82998512970/locations/global/workloadIdentityPools/git-hub-artifact-registry/providers/github
