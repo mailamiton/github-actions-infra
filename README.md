@@ -123,4 +123,3 @@ Once the image is built, you can run any dbt command by passing it to `docker ru
  gcloud auth application-default login
  gcloud auth login
  ```
- 
