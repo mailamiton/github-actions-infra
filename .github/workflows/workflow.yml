@@ -29,7 +29,7 @@ name: 'Build and push to GCP Artifact Registry'
 on:
   push:
     branches:
-      - '"main"'
+      - main
 
 env:
   PROJECT_ID: 'data-explorer-463810' # TODO: update to your Google Cloud project ID
