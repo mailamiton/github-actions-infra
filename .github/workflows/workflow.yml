@@ -37,6 +37,7 @@ env:
   REPOSITORY: 'dbt_repository' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'static-site'
   WORKLOAD_IDENTITY_PROVIDER  : 'projects/82998512970/locations/global/workloadIdentityPools/git-hub-artifact-registry/providers/github'
+  SERVICE_ACCOUNT: 'artifact-registry@data-explorer-463810.iam.gserviceaccount.com'
 
 jobs:
   setup-build-publish-deploy:
@@ -61,6 +62,8 @@ jobs:
         uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2' # google-github-actions/auth@v2
         with:
           workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ env.SERVICE_ACCOUNT }}'
+          project_id: '${{ env.PROJECT_ID }}'
 
       # Authenticate Docker to Google Cloud Artifact Registry
       - name: 'Docker Auth'
